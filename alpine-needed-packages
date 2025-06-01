@@ -1,4 +1,7 @@
 #! /bin/sh
+set -euo pipefail
+
+WOLFBEAR_APPS_DIR=$( dirname "$(pwd)" )/wolfbear-apps
 
 echo "Agregando dependencias de Linux"
 apk add util-linux zip unzip
@@ -8,3 +11,15 @@ apk add build-base cmake qt6-qtbase-dev qt6-qtdeclarative-dev qt6-qtshadertools-
 apk add git ninja perl python3 gperf \
     mesa-dev libxkbcommon-dev wayland-dev libinput-dev \
     freetype-dev harfbuzz-dev fontconfig-dev
+
+echo "Verificando que cmaje y ninja funcionen"
+cmake --version
+ninja --version
+
+echo "Clonando QT 6.9.0 de su repositorio oficial"
+mkdir -p $WOLFBEAR_APPS_DIR/dependencies/qt5
+
+git clone https://github.com/qt/qt5.git -b v6.9.0 --recursive $WOLFBEAR_APPS_DIR/dependencies/qt5
+cd $WOLFBEAR_APPS_DIR/dependencies/qt5
+
+./init-repository --module-subset=qtbase,qtdeclarative,qtshadertools,qtquickcontrols2,qttools

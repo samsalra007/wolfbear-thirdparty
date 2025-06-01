@@ -18,8 +18,9 @@ mkdir -p $WOLFBEAR_APPS_DIR/build
 
 cd $WOLFBEAR_APPS_DIR/build
 
-doas mkdir -p /usr/include/qt6/QtQml/6.8.2
-doas ln -s ../.. /usr/include/qt6/QtQml/6.8.2
+# Habilitar si no encuentra el compilado por la version QtQml
+# doas mkdir -p /usr/include/qt6/QtQml/6.8.2
+# doas ln -s /usr/include/qt6/QtQml /usr/include/qt6/QtQml/6.8.2/QtQml
 
 cmake $WOLFBEAR_APPS_DIR/Launcher -DCMAKE_PREFIX_PATH=$QT_ARM64_DIR
 make -j$(nproc)

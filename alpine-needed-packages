@@ -45,8 +45,8 @@ mkdir -p /opt/qt6.9
 chown wolfbear:wolfbear /opt/qt6.9
 
 cmake .. -GNinja -DCMAKE_INSTALL_PREFIX=/opt/qt6.9 -DCMAKE_BUILD_TYPE=Release
-ninja
-ninja install
+ninja -j$(nproc)
+ninja install -j$(nproc)
 
 
 echo "Exportando variables de entorno para apuntar a QT6.9"

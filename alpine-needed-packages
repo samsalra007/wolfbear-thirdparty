@@ -33,7 +33,7 @@ fi
 
 cd $QT_DIR
 
-mkdir -rf build
+mkdir -p build
 cd build
 
 mkdir -p /opt/qt6.9

@@ -19,4 +19,6 @@ cmake $WOLFBEAR_APPS_DIR/Launcher -DCMAKE_PREFIX_PATH=$QT_ARM64_DIR
 make -j$(nproc)
 
 cd $WOLFBEAR_APPS_DIR/build
+
+rm -f $WOLFBEAR_APPS_DIR/target/LauncherApp.zip
 zip -r $WOLFBEAR_UTILS_DIR/target/LauncherApp .

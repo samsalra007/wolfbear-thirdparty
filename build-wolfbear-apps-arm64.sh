@@ -5,7 +5,7 @@ WOLFBEAR_APPS_DIR=$( dirname "$(pwd)" )/wolfbear-apps
 
 QT_ARM64_DIR=/home/wolfbear/Qt/6.9.0/gcc_arm64
 
-echo "Construyendo wolfbear-apps para ARM64"
+echo "Construyendo wolfbear-apps para ARM64. Por favor asegúrate que tu ambiente sea Ubuntu ARM64"
 echo "wolfbear-utils dir: '$WOLFBEAR_UTILS_DIR'"
 echo "wolfbear-apps dir: '$WOLFBEAR_APPS_DIR'"
 

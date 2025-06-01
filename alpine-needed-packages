@@ -9,49 +9,8 @@ echo "Agregando dependencias de Linux"
 apk add util-linux zip unzip
 
 echo "Agregando dependencias para compilar QT6"
-apk add build-base cmake qt6-qtbase-dev qt6-qtdeclarative-dev qt6-qtshadertools-dev
+apk add qt6-qtbase-dev qt6-qtdeclarative-dev qt6-qtshadertools-dev qt6-qtquickcontrols2-dev cmake ninja build-base
+
 apk add git ninja perl python3 gperf \
     mesa-dev libxkbcommon-dev wayland-dev libinput-dev \
     freetype-dev harfbuzz-dev fontconfig-dev
-
-echo "Verificando que cmaje y ninja funcionen"
-echo "cmake version: "$( cmake --version )
-echo "ninja version: "$( ninja --version)
-sleep 0.5
-
-if [ -d "/opt/qt6.9" ]; then
-    echo "Ya existe una instalación compilada de QT6.9, no es necesario preparar QT"
-    return 0
-fi
-
-if [ -d "$QT_DIR" ]; then
-    echo "El repositorio de QT ya existe, por lo que no es necesario volverlo a descargar"
-else 
-    echo "Clonando QT 6.9.0 de su repositorio oficial"
-
-    mkdir -p $QT_DIR
-
-    git clone https://github.com/qt/qt5.git -b v6.9.0 --recursive $QT_DIR
-    cd $QT_DIR
-
-    ./init-repository --module-subset=qtbase,qtdeclarative,qtshadertools,qtquickcontrols2,qttools --no-checkout
-fi
-
-cd $QT_DIR
-
-mkdir -p build
-cd build
-
-mkdir -p /opt/qt6.9
-chown wolfbear:wolfbear /opt/qt6.9
-
-cmake .. -GNinja -DCMAKE_INSTALL_PREFIX=/opt/qt6.9 -DCMAKE_BUILD_TYPE=Release
-ninja -j$(nproc)
-ninja install -j$(nproc)
-
-
-echo "Exportando variables de entorno para apuntar a QT6.9"
-export PATH=/opt/qt6.9/bin:$PATH
-export LD_LIBRARY_PATH=/opt/qt6.9/lib:$LD_LIBRARY_PATH
-export QML2_IMPORT_PATH=/opt/qt6.9/qml
-export QT_PLUGIN_PATH=/opt/qt6.9/plugins

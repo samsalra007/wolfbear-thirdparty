@@ -10,10 +10,10 @@ echo "wolfbear-utils dir: '$WOLFBEAR_UTILS_DIR'"
 echo "wolfbear-apps dir: '$WOLFBEAR_APPS_DIR'"
 echo "qt-arm64 dir: '$QT_ARM64_DIR'"
 
-mkdir -p $WOLFBEAR_UTILS_DIR/build
-mkdir -p $WOLFBEAR_APPS_DIR/target
+mkdir -p $WOLFBEAR_UTILS_DIR/target
+mkdir -p $WOLFBEAR_APPS_DIR/build
 
-cd $WOLFBEAR_UTILS_DIR/build
+cd $WOLFBEAR_APPS_DIR/build
 
 cmake $WOLFBEAR_APPS_DIR/Launcher -DCMAKE_PREFIX_PATH=$QT_ARM64_DIR
 make -j$(nproc)

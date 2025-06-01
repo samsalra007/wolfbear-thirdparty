@@ -46,11 +46,11 @@ echo "Accediendo al directorio $WOLFBEAR_APPS_DIR/build"
 sleep 2
 cd $WOLFBEAR_APPS_DIR/build
 
-echo "Comprimiendo el directorio $( pwd ) hacia $WOLFBEAR_APPS_DIR/apps/wolfbear-apps/LauncherApp"
+echo "Comprimiendo el directorio $( pwd ) hacia $WOLFBEAR_SYSAPPS_DIR/apps/wolfbear-apps/LauncherApp"
 sleep 2
-zip -r $WOLFBEAR_APPS_DIR/apps/wolfbear-apps/LauncherApp .
+zip -r $WOLFBEAR_SYSAPPS_DIR/apps/wolfbear-apps/LauncherApp .
 
 echo "Desempaquetando en sys-apps"
 sleep 2
 
-unzip $WOLFBEAR_APPS_DIR/apps/wolfbear-apps/LauncherApp.zip -d $WOLFBEAR_APPS_DIR/apps/wolfbear-apps/LauncherApp.d
+unzip $WOLFBEAR_APPS_DIR/apps/wolfbear-apps/LauncherApp.zip -d $WOLFBEAR_SYSAPPS_DIR/apps/wolfbear-apps/LauncherApp.d

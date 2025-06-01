@@ -2,9 +2,9 @@
 
 WOLFBEAR_UTILS_DIR=$( pwd )
 WOLFBEAR_APPS_DIR=$( dirname "$(pwd)" )/wolfbear-apps
+WOLFBEAR_SYSAPPS_DIR=$( dirname "$(pwd)" )/wolfbear-os/overlay/sys-apps
 
 QT_ARM64_DIR="/usr/lib/qt6"
-COMPILE_STRATEGY="musl"
 
 export QML2_IMPORT_PATH=/usr/lib/qt6/qml
 
@@ -12,10 +12,12 @@ echo "Construyendo wolfbear-apps para ARM64. Por favor asegúrate que tu ambient
 echo "wolfbear-utils dir: '$WOLFBEAR_UTILS_DIR'"
 echo "wolfbear-apps dir: '$WOLFBEAR_APPS_DIR'"
 echo "qt-arm64 dir: '$QT_ARM64_DIR'"
+echo "sys-apps dir dir: '$WOLFBEAR_SYSAPPS_DIR'"
 
 mkdir -p $WOLFBEAR_UTILS_DIR/target
 mkdir -p $WOLFBEAR_APPS_DIR/build
 
+echo "Abriendo directorio de compilación"
 cd $WOLFBEAR_APPS_DIR/build
 
 # Habilitar si no encuentra el compilado por la version QtQml
@@ -24,10 +26,21 @@ cd $WOLFBEAR_APPS_DIR/build
 # doas mkdir -p /usr/include/qt6/QtCore/6.8.2
 # doas ln -s /usr/include/qt6/QtCore /usr/include/qt6/QtCore/6.8.2/QtCore
 
+echo "Compilando Launcher en $WOLFBEAR_APPS_DIR/Launcher"
 cmake $WOLFBEAR_APPS_DIR/Launcher -DCMAKE_PREFIX_PATH=$QT_ARM64_DIR
 make -j$(nproc)
 
+echo "Eliminando antigua aplicación de Launcher"
+
+rm -rf $WOLFBEAR_APPS_DIR/apps/wolfbear-apps/LauncherApp.d
+mkdir -p $WOLFBEAR_APPS_DIR/apps/wolfbear-apps/LauncherApp.d
+
+rm -f $WOLFBEAR_APPS_DIR/apps/wolfbear-apps/LauncherApp.zip
+
+echo "Accediendo al directorio $WOLFBEAR_APPS_DIR/build"
 cd $WOLFBEAR_APPS_DIR/build
 
-rm -f $WOLFBEAR_APPS_DIR/target/LauncherApp.zip
-zip -r $WOLFBEAR_UTILS_DIR/target/LauncherApp .
+echo "Comprimiendo el directorio $( pwd ) hacia $WOLFBEAR_APPS_DIR/apps/wolfbear-apps/LauncherApp"
+zip -r $WOLFBEAR_APPS_DIR/apps/wolfbear-apps/LauncherApp .
+
+unzip $WOLFBEAR_APPS_DIR/apps/wolfbear-apps/LauncherApp.zip -d $WOLFBEAR_APPS_DIR/apps/wolfbear-apps/LauncherApp.d

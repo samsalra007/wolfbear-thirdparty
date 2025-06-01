@@ -14,15 +14,3 @@ apk add qt6-qtbase-dev qt6-qtdeclarative-dev qt6-qtshadertools-dev cmake ninja b
 apk add git ninja perl python3 gperf \
     mesa-dev libxkbcommon-dev wayland-dev libinput-dev \
     freetype-dev harfbuzz-dev fontconfig-dev
-
-
-git clone https://github.com/qt/qtquickcontrols2 -b 6.8.2 $QT_DIR/qtquickcontrols2
-cd $QT_DIR/qtquickcontrols2
-
-cmake -B build -S . \
-  -DCMAKE_INSTALL_PREFIX=/usr \
-  -DCMAKE_PREFIX_PATH=/usr/lib/qt6 \
-  -DCMAKE_BUILD_TYPE=Release
-  
-cmake --build build -j$(nproc)
-doas cmake --install build

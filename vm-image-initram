@@ -1,0 +1,30 @@
+#!/bin/bash
+
+WOLFBEAR_DEBIAN_DEV_HOST=192.168.64.8
+PATH_TO_WOLFBEAR_OS="~/wolfbear-os/target"
+
+echo "Ejecutando QEMU como archivos de Kernel"
+
+echo "Eliminando archivos anteriores"
+rm -f Image
+rm -f initramfs.cpio.xz
+
+echo "Descargando nuevos archivos"
+mkdir -f ./target
+sshpass -p "Naru112" scp ${WOLFBEAR_DEBIAN_DEV_HOST}:${PATH_TO_WOLFBEAR_OS}/{Image,initramfs.cpio.xz} ./target
+
+echo "Ejecutando QEMU"
+qemu-system-aarch64 \
+  -machine virt \
+  -cpu cortex-a72 \
+  -m 1024 \
+  -smp cpus=2 \
+  -kernel target/Image \
+  -initrd target/initramfs.cpio.gz \
+  -append "console=ttyAMA0 root=/dev/ram0 rw init=/init" \
+  -netdev user,id=net0 \
+  -device virtio-net-device,netdev=net0 \
+  -device virtio-gpu-pci \
+  -display cocoa \
+  -serial stdio
+

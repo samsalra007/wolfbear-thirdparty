@@ -19,7 +19,7 @@ echo "ninja version: "$( ninja --version)
 sleep 0.5
 
 if [ -d "$QT_DIR" ]; then
-    echo "El repositorio ya existe"
+    echo "El repositorio de QT ya existe, por lo que no es necesario volverlo a descargar"
 else 
     echo "Clonando QT 6.9.0 de su repositorio oficial"
 
@@ -29,6 +29,23 @@ else
     cd $QT_DIR
 
     ./init-repository --module-subset=qtbase,qtdeclarative,qtshadertools,qtquickcontrols2,qttools
-
 fi
 
+cd $QT_DIR
+
+mkdir -rf build
+cd build
+
+mkdir -p /opt/qt6.9
+chown wolfbear:wolfbear /opt/qt6.9
+
+cmake .. -GNinja -DCMAKE_INSTALL_PREFIX=/opt/qt6.9 -DCMAKE_BUILD_TYPE=Release
+ninja
+ninja install
+
+
+echo "Exportando variables de entorno para apuntar a QT6.9"
+export PATH=/opt/qt6.9/bin:$PATH
+export LD_LIBRARY_PATH=/opt/qt6.9/lib:$LD_LIBRARY_PATH
+export QML2_IMPORT_PATH=/opt/qt6.9/qml
+export QT_PLUGIN_PATH=/opt/qt6.9/plugins

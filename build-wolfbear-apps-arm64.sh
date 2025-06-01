@@ -37,10 +37,10 @@ make -j$(nproc)
 echo "Eliminando antigua aplicación de Launcher"
 sleep 2
 
-rm -rf $WOLFBEAR_APPS_DIR/apps/wolfbear-apps/LauncherApp.d
-mkdir -p $WOLFBEAR_APPS_DIR/apps/wolfbear-apps/LauncherApp.d
+rm -rf $WOLFBEAR_SYSAPPS_DIR/apps/wolfbear-apps/LauncherApp.d
+mkdir -p $WOLFBEAR_SYSAPPS_DIR/apps/wolfbear-apps/LauncherApp.d
 
-rm -f $WOLFBEAR_APPS_DIR/apps/wolfbear-apps/LauncherApp.zip
+rm -f $WOLFBEAR_SYSAPPS_DIR/apps/wolfbear-apps/LauncherApp.zip
 
 echo "Accediendo al directorio $WOLFBEAR_APPS_DIR/build"
 sleep 2

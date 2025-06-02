@@ -18,6 +18,10 @@ sleep 2
 mkdir -p $WOLFBEAR_UTILS_DIR/target
 mkdir -p $WOLFBEAR_APPS_DIR/build
 
+echo "Obteniendo los ultimos cambios"
+cd $WOLFBEAR_APPS_DIR
+git pull origin main
+
 echo "Abriendo directorio de compilación $WOLFBEAR_APPS_DIR/build"
 sleep 2
 cd $WOLFBEAR_APPS_DIR/build

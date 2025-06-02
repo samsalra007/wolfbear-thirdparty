@@ -22,7 +22,7 @@ echo "Eliminando compilación anterior"
 sleep 1
 
 rm -rf $WOLFBEAR_APPS_DIR/build
-mkdir -p rm -rf $WOLFBEAR_APPS_DIR/build
+mkdir -p $WOLFBEAR_APPS_DIR/build
 
 echo "Obteniendo los ultimos cambios"
 sleep 1

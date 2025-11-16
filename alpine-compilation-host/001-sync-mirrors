@@ -6,7 +6,7 @@ APK_OUTPUT_SNAPSHOTS="./output/snapshots/"$WOLFBEAR_VERSION"/mirrors"
 
 echo "Limpiando mirrors anteriores"
 rm -rf $APK_OUTPUT_SNAPSHOTS
-mkdir -m $APK_OUTPUT_SNAPSHOTS
+mkdir -p $APK_OUTPUT_SNAPSHOTS
 
 apk fetch \
   --arch aarch64 \

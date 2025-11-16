@@ -1,0 +1,30 @@
+#! /bin/bash
+set -euo pipefail
+
+WOLFBEAR_VERSION="1.0"
+APK_OUTPUT_SNAPSHOTS="./output/snapshots/"$WOLFBEAR_VERSION"/mirrors"
+
+echo "Limpiando mirrors anteriores"
+rm -rf $APK_OUTPUT_SNAPSHOTS
+mkdir -m $APK_OUTPUT_SNAPSHOTS
+
+apk fetch \
+  --arch aarch64 \
+  --recursive \
+  --output "$APK_OUTPUT_SNAPSHOTS" \
+  apk-tools \
+  shadow \
+  dhcpcd \
+  openresolv \
+  util-linux \
+  strace \
+  openssh \
+  grub-efi \
+  parted \
+  e2fsprogs \
+  e2fsprogs-extra \
+  dosfstools \
+  rsync \
+  nano \
+  libc-utils
+

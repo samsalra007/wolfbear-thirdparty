@@ -29,7 +29,8 @@ ALPINE_MAIN_REPO="https://dl-cdn.alpinelinux.org/alpine/v3.22/main"
 ALPINE_COMMUNITY_REPO="https://dl-cdn.alpinelinux.org/alpine/v3.22/community"
 
 for WOLFBEAR_ARCH in $WOLFBEAR_ARCHES; do
-	APK_OUTPUT_SNAPSHOTS="./output/snapshots/"$WOLFBEAR_VERSION"/"$WOLFBEAR_ARCH"/mirrors"
+    ARCH_OUTPUTS="./output/snapshots/$WOLFBEAR_VERSION/$WOLFBEAR_ARCH/"
+    APK_OUTPUT_SNAPSHOTS="$ARCH_OUTPUTS/apk"
 
 	echo "Limpiando mirrors anteriores en $APK_OUTPUT_SNAPSHOTS"
 	rm -rf "$APK_OUTPUT_SNAPSHOTS"

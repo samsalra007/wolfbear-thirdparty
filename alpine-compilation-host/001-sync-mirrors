@@ -38,6 +38,7 @@ for WOLFBEAR_ARCH in $WOLFBEAR_ARCHES; do
         --arch "$WOLFBEAR_ARCH" \
         --repository "$ALPINE_MAIN_REPO" \
         --repository "$ALPINE_COMMUNITY_REPO" \
+        --repositories-file /dev/null \
         --output "$APK_OUTPUT_SNAPSHOTS" \
         --recursive \
         $WOLFBEAR_PACKAGES

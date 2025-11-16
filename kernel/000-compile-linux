@@ -1,0 +1,7 @@
+#! /bin/sh
+
+set -euo pipefail
+
+./globals
+
+echo "Hola mundo"

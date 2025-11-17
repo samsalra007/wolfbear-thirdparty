@@ -17,7 +17,7 @@ else
     echo "El parche de ncurses fue aplicado exitosamente"
 fi
 
-if [ "$SYS_ARCH" = "arm64 "]; then
+if [ "$SYS_ARCH" = "arm64 " ]; then
     PATCH="$BUSYBOX_PATCHES_DIR/busybox-arm64-shaNI.patch"
     if patch --dry-run --forward -p0 < "$PATCH"; then
         echo "Aplicando parches para shaNi fix en Alpine"

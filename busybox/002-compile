@@ -3,6 +3,7 @@ set -e
 
 source ./globals
 
+rm -rf "$BUSYBOX_SOURCE_CODE_DIR/.config"
 cp "$BUSYBOX_CONFIGS_PATH/busybox-$SYS_ARCH" "$BUSYBOX_SOURCE_CODE_DIR/.config"
 
 cd "$BUSYBOX_SOURCE_CODE_DIR"

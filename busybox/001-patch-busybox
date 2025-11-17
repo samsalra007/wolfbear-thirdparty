@@ -11,7 +11,7 @@ echo "Probando parche: $PATCH"
 
 if patch --dry-run --forward -p0 < "$PATCH"; then
     echo "Aplicando parches para ncurses fix en Alpine"
-    patch -p1 < "$PATCH"
+    patch -p0 < "$PATCH"
     echo "El parche fue aplicado exitosamente"
 else
     echo "No se pudo aplicar el parche automáticamente."

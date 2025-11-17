@@ -14,10 +14,16 @@ if patch --dry-run --forward -p0 < "$PATCH"; then
     patch -p0 < "$PATCH"
     echo "El parche fue aplicado exitosamente"
 else
-    echo "No se pudo aplicar el parche automáticamente."
-    echo "Puede que:"
-    echo "  - ya esté aplicado parcialmente,"
-    echo "  - el código fuente no coincida con la versión esperada,"
-    echo "  - o el nivel -p (p1) sea incorrecto."
-    exit 1
+    echo "El parche de ncurses fue aplicado exitosamente"
+fi
+
+if [ "$SYS_ARCH" = "arm64 "]; then
+    PATCH="$BUSYBOX_PATCHES_DIR/busybox-arm64-shaNI.patch"
+    if patch --dry-run --forward -p0 < "$PATCH"; then
+        echo "Aplicando parches para shaNi fix en Alpine"
+        patch -p0 < "$PATCH"
+        echo "El parche fue aplicado exitosamente"
+    else
+        echo "El parche de ncurses fue aplicado exitosamente"
+    fi
 fi

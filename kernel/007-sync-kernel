@@ -1,0 +1,5 @@
+#! /bin/sh
+
+source ./globals
+
+scp -i ./certs/wolfbear-repo.pem "$COMPILED_LINUX/Image" wolfbear@wolfbear.mx:"$WOLFBEAR_REPO_WWW/$WOLFBEAR_VERSION/wolfbear-kernel-arm64"

@@ -23,7 +23,7 @@ make -j$(nproc) modules_install INSTALL_MOD_PATH="$LINUX_MODULES_COMPILED_DIR"
 
 echo "Compilación realizada exitosamente"
 
-cd "$DEPENDENCIES_LINUX_MODULES_DIR"
+cd "$LINUX_MODULES_COMPILED_DIR"
 zip -r linux-modules.zip .
 
 cd "$ROOT_PATH"

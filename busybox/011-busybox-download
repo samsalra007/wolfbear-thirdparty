@@ -1,0 +1,29 @@
+#!/bin/sh
+set -euo pipefail
+
+source ./globals
+
+cd $ROOT_PATH
+
+echo "Iniciando descarga de Busybox '$BUSYBOX_SOURCE_CODE_DIR' en su versión '$BUSY_BOX_VERSION'"
+
+echo "Abriendo directorio de dependencias '$BUSYBOX_SOURCE_CODE_DIR'"
+cd $BUSYBOX_SOURCE_CODE_DIR
+
+if [ ! -d "$BUSYBOX_SOURCE_CODE_DIR" ] || [ -z "$(ls -A "$BUSYBOX_SOURCE_CODE_DIR")" ]; then
+	echo "Busybox será descargado desde su repositorio oficial ya que no fue detectada en el sistema"
+
+	# Elimina por si a caso existe 
+	rm -f "$BUSYBOX_SOURCE_CODE_DIR/busybox-$BUSY_BOX_VERSION.tar.bz2"
+
+	wget https://busybox.net/downloads/busybox-$BUSY_BOX_VERSION.tar.bz2
+
+	echo "Descomprimiendo Busybox"
+	tar -xjf busybox-$BUSY_BOX_VERSION.tar.bz2
+
+	log_message $SCRIPT_NAME "Busybox ha sido descargado exitosamente"
+else 
+	log_message $SCRIPT_NAME "No es necesario descargar Busybox ya que fue encontrado en la carpeta de dependencias"
+fi
+
+log_message $SCRIPT_NAME "El script para descargar Busybox ha finalizado"

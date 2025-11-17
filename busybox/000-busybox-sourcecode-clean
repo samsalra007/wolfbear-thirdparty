@@ -1,0 +1,12 @@
+#!/bin/sh
+set -euo pipefail
+
+source ./globals
+
+echo "Iniciando limpieza de '$BUSYBOX_SOURCE_CODE_DIR'"
+rm -rf "$BUSYBOX_SOURCE_CODE_DIR"
+
+echo "Creando directorio vacío '$BUSYBOX_SOURCE_CODE_DIR'"
+mkdir -p "$BUSYBOX_SOURCE_CODE_DIR"
+
+echo"Limpieza de '$BUSYBOX_SOURCE_CODE_DIR' finalizada"

@@ -19,7 +19,7 @@ ssh -i "$WOLFBEAR_REPO_CERT" wolfbear@wolfbear.mx <<ENDSSH
     echo "Eliminando versión: $WOLFBEAR_VERSION"
     rm -rf "$WOLFBEAR_VERSION"
 
-    echo "Creando estructura para \$WOLFBEAR_VERSION=$WOLFBEAR_VERSION"
+    echo "Creando estructura para WOLFBEAR_VERSION=$WOLFBEAR_VERSION"
     mkdir -p "$WOLFBEAR_REPO_WWW/$WOLFBEAR_VERSION/aarch64/apk"
     mkdir -p "$WOLFBEAR_REPO_WWW/$WOLFBEAR_VERSION/aarch64/kernel"
     mkdir -p "$WOLFBEAR_REPO_WWW/$WOLFBEAR_VERSION/aarch64/platforms"

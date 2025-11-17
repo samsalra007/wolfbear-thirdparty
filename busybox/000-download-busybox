@@ -6,24 +6,32 @@ source ./globals
 cd $ROOT_PATH
 
 echo "Iniciando descarga de Busybox '$BUSYBOX_SOURCE_CODE_DIR' en su versión '$BUSY_BOX_VERSION'"
+slepp 0.2
 
 echo "Abriendo directorio de dependencias '$BUSYBOX_SOURCE_CODE_DIR'"
+slepp 0.2
+
 cd $BUSYBOX_SOURCE_CODE_DIR
 
 if [ ! -d "$BUSYBOX_SOURCE_CODE_DIR" ] || [ -z "$(ls -A "$BUSYBOX_SOURCE_CODE_DIR")" ]; then
-	echo "Busybox será descargado desde su repositorio oficial ya que no fue detectada en el sistema"
+	echo "Busybox será descargado desde su repositorio oficial"
+    slepp 0.2
 
-	# Elimina por si a caso existe 
-	rm -f "$BUSYBOX_SOURCE_CODE_DIR/busybox-$BUSY_BOX_VERSION.tar.bz2"
+	rm -f $DEPENDENCIES_DIR/busybox-$BUSY_BOX_VERSION.tar.bz2
 
 	wget https://busybox.net/downloads/busybox-$BUSY_BOX_VERSION.tar.bz2
 
 	echo "Descomprimiendo Busybox"
+    slepp 0.2
+
 	tar -xjf busybox-$BUSY_BOX_VERSION.tar.bz2
 
 	echo "Busybox ha sido descargado exitosamente"
+    slepp 0.2
 else 
 	echo "No es necesario descargar Busybox ya que fue encontrado en la carpeta de dependencias"
+    slepp 0.2
 fi
 
 echo "El script para descargar Busybox ha finalizado"
+slepp 0.2

@@ -1,7 +1,7 @@
 #! /bin/sh
 set -euo pipefail
 
-./globals
+source ./globals
 
 WOLFBEAR_VERSION="1.0"
 WOLFBEAR_ARCHES="aarch64 x86_64"

@@ -20,3 +20,5 @@ echo "Compilando módulos en '$DEPENDENCIES_LINUX_MODULES_DIR'"
 make -j$(nproc) modules_install INSTALL_MOD_PATH="$DEPENDENCIES_LINUX_MODULES_DIR"
 
 echo "Compilación realizada exitosamente"
+
+cd "$ROOT_PATH"

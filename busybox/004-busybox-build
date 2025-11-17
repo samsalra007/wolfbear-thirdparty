@@ -1,0 +1,32 @@
+#!/bin/sh
+set -euo pipefail
+
+source ./globals
+
+cd $ROOT_PATH
+
+echo "Compilación de Busybox"
+
+echo "Abriendo directorio '$BUSYBOX_SOURCE_CODE_DIR'"
+cd $BUSYBOX_SOURCE_CODE_DIR
+
+echo "Solicitando compilación de Busybox make"
+make -j$(nproc)
+
+echo "Instalando Busybox en directorio '$BUSYBOX_COMPILED_DIR'"
+
+rm -rf "$BUSYBOX_COMPILED_DIR"
+mkdir -p "$BUSYBOX_COMPILED_DIR"
+
+make CONFIG_PREFIX=$BUSYBOX_COMPILED_DIR install
+
+cd "$BUSYBOX_COMPILED_DIR"
+
+rm -f busybox.zip
+zip -r busybox.zip .
+
+echo "Busybox ha sido compilado exitosamente en '$BUSYBOX_COMPILED_DIR'"
+
+cd $ROOT_PATH
+
+

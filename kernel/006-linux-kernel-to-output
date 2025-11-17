@@ -22,6 +22,6 @@ rm -rf "$LINUX_COMPILED_DIR"
 mkdir -p "$LINUX_COMPILED_DIR"
 
 echo "Se moverá el archivo '$IMAGE_DIR' hacia el directorio '$LINUX_COMPILED_DIR'"
-mv $IMAGE_DIR "$LINUX_COMPILED_DIR"
+mv $IMAGE_DIR "$LINUX_COMPILED_DIR/"
 
 echo "Se han movido los archivos compilados de Linux Kernel exitosamente"

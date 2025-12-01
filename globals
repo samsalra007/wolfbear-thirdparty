@@ -16,7 +16,7 @@ export WOLFBEAR_REPO_CERT="$ROOT_PATH/certs/wolfbear-repo.pem"
 export WOLFBEAR_REPO_WWW="/scratch/www/os.wolfbear.mx/public"
 export WOLFBEAR_SNAPSHOT_ZIP_FILE="$WOLFBEAR_VERSION.zip"
 
-export VERSION_LINUX_KERNEL=6.15
+export VERSION_LINUX_KERNEL=6.17
 export BUSY_BOX_VERSION=1.37.0
 export QT_VERSION=6.9.1
 

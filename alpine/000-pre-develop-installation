@@ -10,4 +10,5 @@ apk add qt6-qtbase-dev qt6-qtdeclarative-dev qt6-qtshadertools-dev cmake ninja b
 apk add git ninja perl python3 gperf \
     mesa-dev libxkbcommon-dev wayland-dev libinput-dev \
     freetype-dev harfbuzz-dev fontconfig-dev \
-    gettext-dev ncurses-dev ncurses-libs
+    gettext-dev ncurses-dev ncurses-libs \
+    add mpc1-dev gmp-dev mpfr-dev

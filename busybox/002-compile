@@ -8,3 +8,8 @@ cp "$BUSYBOX_CONFIGS_PATH/busybox-$SYS_ARCH" "$BUSYBOX_SOURCE_CODE_DIR/.config"
 
 cd "$BUSYBOX_SOURCE_CODE_DIR"
 make -j"$(nproc)"
+
+rm -f busybox.zip
+zip -r busybox.zip .
+
+mv busybox.zip "$BUSYBOX_COMPILED_DIR"

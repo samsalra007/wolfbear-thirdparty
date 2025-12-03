@@ -12,4 +12,7 @@ make -j"$(nproc)"
 rm -f busybox.zip
 zip -r busybox.zip .
 
+rm -rf "$BUSYBOX_COMPILED_DIR"
+mkdir -p "$BUSYBOX_COMPILED_DIR"
+
 mv busybox.zip "$BUSYBOX_COMPILED_DIR"

@@ -96,6 +96,7 @@ for WOLFBEAR_ARCH in $WOLFBEAR_ARCHES; do
 
 done
 
+echo "Empaquetando todos los APK en $OUTPUT_PATH/apk.zip"
 cd "$OUTPUT_PATH/"
 
 rm -f apk.zip

@@ -69,13 +69,29 @@ for WOLFBEAR_ARCH in $WOLFBEAR_ARCHES; do
         cd "$APK_OUTPUT_SNAPSHOTS"
         rm -f APKINDEX.tar.gz
 
+        echo "Listando .apk en $APK_OUTPUT_SNAPSHOTS..."
+        ls -1 *.apk 2>/dev/null | head
+
+        # Evitar que *.apk se quede literal si no hay archivos
+        set -- ./*.apk
+        if [ "$1" = "./*.apk" ]; then
+            echo "ERROR: No se encontraron paquetes .apk en $APK_OUTPUT_SNAPSHOTS, no puedo generar APKINDEX" >&2
+            exit 1
+        fi
+
+        echo "Total de paquetes a indexar: $#"
+
         apk index \
-            -o APKINDEX.tar.gz \
-            --description "Wolfbear OS Dev APK Index for $WOLFBEAR_ARCH" \
             --rewrite-arch "$WOLFBEAR_ARCH" \
-            *.apk
-        
+            --description "Wolfbear OS Dev APK Index for $WOLFBEAR_ARCH" \
+            -o APKINDEX.tar.gz \
+            "$@"
+
+        echo "Índice generado:"
         ls -lh APKINDEX.tar.gz
+
+        echo "Contenido del APKINDEX (primeras líneas):"
+        tar xzOf APKINDEX.tar.gz APKINDEX | head -20
     )
 
 done

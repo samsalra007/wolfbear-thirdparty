@@ -68,7 +68,11 @@ for WOLFBEAR_ARCH in $WOLFBEAR_ARCHES; do
     (
         cd "$APK_OUTPUT_SNAPSHOTS"
         rm -f APKINDEX.tar.gz
-        apk index -o APKINDEX.tar.gz
+
+        apk index -o APKINDEX.tar.gz \
+            --description "Wolfbear OS Dev APK Index for $WOLFBEAR_ARCH" \
+            *.apk
+        
         ls -lh APKINDEX.tar.gz
     )
 

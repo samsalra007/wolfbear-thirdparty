@@ -22,7 +22,9 @@ ssh -i "$WOLFBEAR_REPO_CERT" wolfbear@wolfbear.mx <<ENDSSH
     echo "Creando estructura para WOLFBEAR_VERSION=$WOLFBEAR_VERSION"
     mkdir -p "$WOLFBEAR_REPO_WWW/$WOLFBEAR_VERSION/apk"
     mkdir -p "$WOLFBEAR_REPO_WWW/$WOLFBEAR_VERSION/kernel"
+    mkdir -p "$WOLFBEAR_REPO_WWW/$WOLFBEAR_VERSION/kernel/aarch64"
     mkdir -p "$WOLFBEAR_REPO_WWW/$WOLFBEAR_VERSION/platforms"
+    mkdir -p "$WOLFBEAR_REPO_WWW/$WOLFBEAR_VERSION/platforms/aarch64"
 
     echo "Contenido DESPUÉS:"
     ls -R "$WOLFBEAR_REPO_WWW/$WOLFBEAR_VERSION" || true

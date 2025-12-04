@@ -20,13 +20,9 @@ ssh -i "$WOLFBEAR_REPO_CERT" wolfbear@wolfbear.mx <<ENDSSH
     rm -rf "$WOLFBEAR_VERSION"
 
     echo "Creando estructura para WOLFBEAR_VERSION=$WOLFBEAR_VERSION"
-    mkdir -p "$WOLFBEAR_REPO_WWW/$WOLFBEAR_VERSION/aarch64/apk"
-    mkdir -p "$WOLFBEAR_REPO_WWW/$WOLFBEAR_VERSION/aarch64/kernel"
-    mkdir -p "$WOLFBEAR_REPO_WWW/$WOLFBEAR_VERSION/aarch64/platforms"
-
-    mkdir -p "$WOLFBEAR_REPO_WWW/$WOLFBEAR_VERSION/x86_64/apk"
-    mkdir -p "$WOLFBEAR_REPO_WWW/$WOLFBEAR_VERSION/x86_64/kernel"
-    mkdir -p "$WOLFBEAR_REPO_WWW/$WOLFBEAR_VERSION/x86_64/platforms"
+    mkdir -p "$WOLFBEAR_REPO_WWW/$WOLFBEAR_VERSION/apk"
+    mkdir -p "$WOLFBEAR_REPO_WWW/$WOLFBEAR_VERSION/kernel"
+    mkdir -p "$WOLFBEAR_REPO_WWW/$WOLFBEAR_VERSION/platforms"
 
     echo "Contenido DESPUÉS:"
     ls -R "$WOLFBEAR_REPO_WWW/$WOLFBEAR_VERSION" || true

@@ -3,7 +3,7 @@ set -euo pipefail
 
 source ./globals
 
-WOLFBEAR_ARCHES="aarch64 x86_64"
+WOLFBEAR_ARCHES="aarch64"
 
 WOLFBEAR_PACKAGES="
 apk-tools

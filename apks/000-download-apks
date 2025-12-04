@@ -93,8 +93,8 @@ for WOLFBEAR_ARCH in $WOLFBEAR_ARCHES; do
         echo "Índice generado:"
         ls -lh APKINDEX.tar.gz
 
-        echo "Contenido del APKINDEX (primeras líneas):"
-        tar xzOf APKINDEX.tar.gz APKINDEX | head -20
+        # echo "Contenido del APKINDEX (primeras líneas):"
+        # tar xzOf APKINDEX.tar.gz APKINDEX | head -20
     )
 
 done

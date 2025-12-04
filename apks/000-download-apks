@@ -14,7 +14,7 @@ dosfstools
 parted
 kmod
 linux-headers
-musl-utils
+libc-utils
 file
 nano
 dhcpcd

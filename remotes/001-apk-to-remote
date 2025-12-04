@@ -4,9 +4,10 @@ source ./globals
 
 cd $ROOT_PATH
 
-scp -i "$WOLFBEAR_REPO_CERT" "$OUTPUT_PATH/apk.zip" wolfbear@wolfbear.mx:"$WOLFBEAR_REPO_WWW/$WOLFBEAR_VERSION/apk"
+scp -i "$WOLFBEAR_REPO_CERT" "$OUTPUT_PATH/apk.zip" wolfbear@wolfbear.mx:"$WOLFBEAR_REPO_WWW/$WOLFBEAR_VERSION"
 
 ssh -i "$WOLFBEAR_REPO_CERT" wolfbear@wolfbear.mx <<ENDSSH
     cd "$WOLFBEAR_REPO_WWW/$WOLFBEAR_VERSION"
     unzip apk.zip
+    rm apk.zip
 ENDSSH

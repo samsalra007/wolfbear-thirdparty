@@ -72,6 +72,7 @@ for WOLFBEAR_ARCH in $WOLFBEAR_ARCHES; do
         apk index \
             -o APKINDEX.tar.gz \
             --description "Wolfbear OS Dev APK Index for $WOLFBEAR_ARCH" \
+            --rewrite-arch "$WOLFBEAR_ARCH" \
             *.apk
         
         ls -lh APKINDEX.tar.gz

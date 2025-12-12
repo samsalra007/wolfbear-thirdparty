@@ -1,0 +1,14 @@
+#! /bin/sh
+set -euo pipefail
+
+source ./globals
+
+echo "Cleaning Linux source and compiled directories..."
+
+rm -rf "$LINUX_KERNEL_SOURCES_DIR"
+rm -rf "$LINUX_KERNEL_COMPILED_DIR"
+
+mkdir -p "$LINUX_KERNEL_SOURCES_DIR"
+mkdir -p "$LINUX_KERNEL_COMPILED_DIR"
+
+echo "Linux source and compiled directories have been cleaned."

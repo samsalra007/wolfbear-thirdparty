@@ -3,11 +3,11 @@ set -euo pipefail
 
 source ./globals
 
-echo "Iniciando descarga del kernel de linux '$LINUX_SOURCE_CODE_DIR'"
+echo "Downloading Linux '$LINUX_KERNEL_SOURCES_DIR'"
 
-if [ ! -d "$LINUX_SOURCE_CODE_DIR" ] || [ -z "$(ls -A "$LINUX_SOURCE_CODE_DIR")" ]; then
+if [ ! -d "$LINUX_KERNEL_SOURCES_DIR" ] || [ -z "$(ls -A "$LINUX_KERNEL_SOURCES_DIR")" ]; then
 	echo "Linux kernel sera descargado desde su repositorio oficial"
-	git clone -b v$VERSION_LINUX_KERNEL --single-branch https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git $LINUX_SOURCE_CODE_DIR
+	git clone -b v$LINUX_KERNEL_VERSION --single-branch https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git $LINUX_KERNEL_SOURCES_DIR
 
 	echo "Linux kernel se ha descargado exitosamente"
 else 

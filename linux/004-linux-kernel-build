@@ -3,13 +3,10 @@ set -euo pipefail
 
 source ./globals
 
-echo "Iniciando compilación de Linux Kernel"
+echo "Starting Linux compilation in directory: $LINUX_KERNEL_SOURCES_DIR"
+cd $LINUX_KERNEL_SOURCES_DIR
 
-echo "Accediendo al directorio '$LINUX_SOURCE_CODE_DIR'"
-cd $LINUX_SOURCE_CODE_DIR
-
-echo "Compilando kernel"
-
+echo "Requesting kernel compilation with multiple cores"
 make -j$(nproc)
 
-echo "Compilación realizada exitosamente"
+echo "Linux kernel compilation completed successfully."

@@ -1,0 +1,14 @@
+#! /bin/sh
+set -euo pipefail
+
+source ./globals
+
+echo "Cleaning APK source and compiled directories..."
+
+rm -rf "$APK_SOURCES_DIR"
+rm -rf "$APK_COMPILED_DIR"
+
+mkdir -p "$APK_SOURCES_DIR"
+mkdir -p "$APK_COMPILED_DIR"
+
+echo "APK source and compiled directories have been cleaned."

@@ -1,0 +1,20 @@
+#! /bin/sh
+set -euo pipefail
+
+source ./globals
+
+echo "Packaging APK files into zip..."
+
+echo "Accessing to $APK_SOURCES_DIR"
+cd $APK_SOURCES_DIR
+
+echo "Jumping one directory up to package apk files"
+cd ..
+
+echo "Creating zip file..."
+zip -r apk.zip apk
+
+echo "APK package zip file created at: $APK_SOURCES_DIR/apk.zip"
+echo "Moving zip file to compiled directory $APK_COMPILED_DIR"
+
+mv apk.zip "$APK_COMPILED_DIR/"

@@ -3,7 +3,7 @@ set -euo pipefail
 
 source ./globals
 
-WOLFBEAR_ARCHES="aarch64"
+WOLFBEAR_ARCHES="aarch64 x86_64"
 
 WOLFBEAR_PACKAGES="
 apk-tools
@@ -48,13 +48,15 @@ rm -rf "$OUTPUT_PATH/apk"
 mkdir -p "$OUTPUT_PATH/apk"
 
 for WOLFBEAR_ARCH in $WOLFBEAR_ARCHES; do
-    APK_OUTPUT_SNAPSHOTS="$OUTPUT_PATH/apk/$WOLFBEAR_ARCH"
+    APK_PACKAGES_DOWNLOAD_DIR="$APK_SOURCES_DIR/$WOLFBEAR_ARCH"
 
-	echo "Limpiando mirrors anteriores en $APK_OUTPUT_SNAPSHOTS"
-	rm -rf "$APK_OUTPUT_SNAPSHOTS"
-	mkdir -p "$APK_OUTPUT_SNAPSHOTS"
+    echo "Creating download directory at $APK_PACKAGES_DOWNLOAD_DIR..."
+	mkdir -p "$APK_PACKAGES_DOWNLOAD_DIR"
 
-    echo "Descargando dependencias APK"
+    echo "Downloading APK packages for architecture: $WOLFBEAR_ARCH"
+    echo "from repositories: $ALPINE_MAIN_REPO and $ALPINE_COMMUNITY_REPO"
+    echo "output path: $APK_PACKAGES_DOWNLOAD_DIR"
+
 	apk fetch \
         --no-cache \
         --cache-dir /dev/null \
@@ -63,44 +65,38 @@ for WOLFBEAR_ARCH in $WOLFBEAR_ARCHES; do
         --repository "$ALPINE_COMMUNITY_REPO" \
         --repositories-file /dev/null \
         --allow-untrusted \
-        --output "$APK_OUTPUT_SNAPSHOTS" \
+        --output "$APK_PACKAGES_DOWNLOAD_DIR" \
         --recursive \
         $WOLFBEAR_PACKAGES
 
-    echo "Generando indices"
+    echo "Generating APKINDEX in path: $APK_PACKAGES_DOWNLOAD_DIR"
     (
-        cd "$APK_OUTPUT_SNAPSHOTS"
+        echo "Accessing directory to $APK_PACKAGES_DOWNLOAD_DIR"
+        cd "$APK_PACKAGES_DOWNLOAD_DIR"
         rm -f APKINDEX.tar.gz
 
-        echo "Listando .apk en $APK_OUTPUT_SNAPSHOTS..."
+        echo "Listing contents of download directory: $APK_PACKAGES_DOWNLOAD_DIR"
         ls -1 *.apk 2>/dev/null | head
 
         # Evitar que *.apk se quede literal si no hay archivos
         set -- ./*.apk
         if [ "$1" = "./*.apk" ]; then
-            echo "ERROR: No se encontraron paquetes .apk en $APK_OUTPUT_SNAPSHOTS, no puedo generar APKINDEX" >&2
+            echo "ERROR: no .apk packages were found in $APK_PACKAGES_DOWNLOAD_DIR. Unable to generate APKINDEX" >&2
             exit 1
         fi
 
-        echo "Total de paquetes a indexar: $#"
+        echo "Total package count to index: $#"
 
         apk index \
             --rewrite-arch "$WOLFBEAR_ARCH" \
-            --description "Wolfbear OS Dev APK Index for $WOLFBEAR_ARCH" \
+            --description "WolfbearOS APK Index for $WOLFBEAR_ARCH" \
             -o APKINDEX.tar.gz \
             "$@"
 
-        echo "Índice generado:"
+        echo "Generated index:"
         ls -lh APKINDEX.tar.gz
-
-        # echo "Contenido del APKINDEX (primeras líneas):"
-        # tar xzOf APKINDEX.tar.gz APKINDEX | head -20
     )
 
 done
 
-echo "Empaquetando todos los APK en $OUTPUT_PATH/apk.zip"
-cd "$OUTPUT_PATH/"
-
-rm -f apk.zip
-zip -r apk.zip apk/
+echo "All APK packages have been downloaded and indexed successfully."

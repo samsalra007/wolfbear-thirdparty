@@ -18,8 +18,23 @@ export WOLFBEAR_REPO_WWW="/scratch/www/os.wolfbear.mx/public"
 export WOLFBEAR_APK_SNAPSHOT_ZIP_FILE="$WOLFBEAR_VERSION.zip"
 
 export VERSION_LINUX_KERNEL=6.17
+
+export LINUX_KERNEL_VERSION=6.17
+export LINUX_KERNEL_SOURCES_DIR="$ROOT_PATH/sources/wolfbear-os_$WOLFBEAR_VERSION/linux/$SYS_ARCH/$LINUX_KERNEL_VERSION"
+export LINUX_KERNEL_COMPILED_DIR="$ROOT_PATH/output/wolfbear-os_$WOLFBEAR_VERSION/linux/$SYS_ARCH/$LINUX_KERNEL_VERSION"
+export LINUX_THIRDPARTY_CONFIGS_DIR="$ROOT_PATH/thirdparty/linux/configs"
+
 export BUSY_BOX_VERSION=1.37.0
+export BUSYBOX_SOURCES_DIR="$ROOT_PATH/sources/wolfbear-os_$WOLFBEAR_VERSION/busybox/$SYS_ARCH/$BUSY_BOX_VERSION"
+export BUSYBOX_COMPILED_DIR="$ROOT_PATH/output/wolfbear-os_$WOLFBEAR_VERSION/busybox/$SYS_ARCH/$BUSY_BOX_VERSION"
+export BUSYBOX_THIRDPARTY_CONFIGS_DIR="$ROOT_PATH/thirdparty/busybox/configs"
+
+export APK_SOURCES_DIR="$ROOT_PATH/sources/wolfbear-os_$WOLFBEAR_VERSION/apk/"
+export APK_COMPILED_DIR="$ROOT_PATH/output/wolfbear-os_$WOLFBEAR_VERSION/apk/"
+
 export QT_VERSION=6.9.1
+export QT_SOURCES_DIR="$ROOT_PATH/sources/wolfbear-os_$WOLFBEAR_VERSION/busybox/$SYS_ARCH/$QT_VERSION"
+export QT_COMPILED_DIR="$ROOT_PATH/output/wolfbear-os_$WOLFBEAR_VERSION/busybox/$SYS_ARCH/$QT_VERSION"
 
 export OUTPUT_PATH="$ROOT_PATH/output"
 export KERNEL_PATH="$ROOT_PATH/kernel"

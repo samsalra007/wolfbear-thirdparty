@@ -44,9 +44,6 @@ rsync
 ALPINE_MAIN_REPO="https://dl-cdn.alpinelinux.org/alpine/v3.22/main"
 ALPINE_COMMUNITY_REPO="https://dl-cdn.alpinelinux.org/alpine/v3.22/community"
 
-rm -rf "$OUTPUT_PATH/apk"
-mkdir -p "$OUTPUT_PATH/apk"
-
 for WOLFBEAR_ARCH in $WOLFBEAR_ARCHES; do
     APK_PACKAGES_DOWNLOAD_DIR="$APK_SOURCES_DIR/$WOLFBEAR_ARCH"
 

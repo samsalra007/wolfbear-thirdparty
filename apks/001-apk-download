@@ -90,6 +90,7 @@ for WOLFBEAR_ARCH in $WOLFBEAR_ARCHES; do
         apk index \
             --rewrite-arch "$WOLFBEAR_ARCH" \
             --description "WolfbearOS APK Index for $WOLFBEAR_ARCH" \
+            --allow-untrusted \
             -o APKINDEX.tar.gz \
             "$@"
 

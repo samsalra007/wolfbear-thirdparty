@@ -1,0 +1,14 @@
+#! /bin/sh
+set -euo pipefail
+
+source ./globals
+
+echo "Cleaning Busybox source and compiled directories..."
+
+rm -rf "$BUSYBOX_SOURCES_DIR"
+rm -rf "$BUSYBOX_COMPILED_DIR"
+
+mkdir -p "$BUSYBOX_SOURCES_DIR"
+mkdir -p "$BUSYBOX_COMPILED_DIR"
+
+echo "Busybox sources and compiled directories have been cleaned."

@@ -1,0 +1,18 @@
+#!/bin/sh
+set -euo pipefail
+
+source ./globals
+
+echo "Downloading busybox source code into $BUSYBOX_SOURCES_DIR from official repository"
+
+cd "$BUSYBOX_SOURCES_DIR"
+rm -f "busybox-$BUSY_BOX_VERSION.tar.bz2"
+
+wget -O busybox.tar.bz2 \
+	https://busybox.net/downloads/busybox-$BUSY_BOX_VERSION.tar.bz2
+
+echo "Unpacking Busybox source code"
+tar -xjf "busybox.tar.bz2" --strip-components=1
+rm "busybox.tar.bz2"
+
+echo "Busybox source code downloaded and unpacked successfully into $BUSYBOX_SOURCES_DIR"

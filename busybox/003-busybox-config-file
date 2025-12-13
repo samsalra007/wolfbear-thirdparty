@@ -1,0 +1,14 @@
+#!/bin/sh
+set -euo pipefail
+
+source ./globals
+
+echo "Setting up config file in '$BUSYBOX_SOURCES_DIR' for arch '$SYS_ARCH'"
+
+echo "Removing prefious configuration"
+rm -f "$BUSYBOX_SOURCES_DIR"/.config
+
+echo "Copyng config file"
+cp "$BUSYBOX_CONFIG_DIR/$SYS_ARCH".config "$BUSYBOX_SOURCES_DIR"/.config
+
+echo "Successfully copied config file into busybox source directory"

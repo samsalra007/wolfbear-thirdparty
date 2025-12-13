@@ -5,6 +5,7 @@ source ./globals
 echo "Creating Wolfbear OS output zip archive"
 
 cd $OUTPUT_DIR
+rm -rf "$WOLFBEAR_OUTPUT_ZIP_NAME"
 zip -r "$WOLFBEAR_OUTPUT_ZIP_NAME" -r "wolfbear-os_$WOLFBEAR_VERSION"
 
 echo "Wolfbear OS output zip archive '$WOLFBEAR_OUTPUT_ZIP_NAME' created successfully."

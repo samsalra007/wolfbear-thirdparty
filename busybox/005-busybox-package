@@ -1,18 +1,25 @@
 #!/bin/sh
 set -e
 
+#!/bin/sh
+set -e
+
 source ./globals
 
-echo "Packaging compiled Busybox from '$BUSYBOX_SOURCES_DIR' into zip archive"
+STAGING_DIR="$(mktemp -d)"
 
-echo "Creating busybox.zip archive"
-cd "$BUSYBOX_SOURCES_DIR/.."
+echo "Packaging compiled BusyBox"
 
-rm -rf busybox.zip
-zip -r "busybox.zip" "$(basename "$BUSYBOX_COMPILED_DIR")"
+# Queremos que dentro del zip exista: busybox/...
+mkdir -p "$STAGING_DIR/busybox"
+cp -a "$BUSYBOX_SOURCES_DIR/." "$STAGING_DIR/busybox/"
 
-echo "Moving busybox.zip to '$BUSYBOX_COMPILED_DIR'"
-mv "busybox.zip" "$BUSYBOX_COMPILED_DIR"
+(
+  cd "$STAGING_DIR"
+  zip -r busybox.zip busybox
+)
 
-rm -f busybox.zip
-echo "Busybox packaged successfully into '$BUSYBOX_COMPILED_DIR/busybox.zip'"
+mv "$STAGING_DIR/busybox.zip" "$BUSYBOX_SOURCES_DIR/busybox.zip"
+rm -rf "$STAGING_DIR"
+
+mv "$BUSYBOX_SOURCES_DIR/busybox.zip" "$BUSYBOX_COMPILED_DIR/"

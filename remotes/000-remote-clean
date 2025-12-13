@@ -1,0 +1,19 @@
+#! /bin/sh
+
+source ./globals
+
+echo "Cleaning remote repository directory '$WOLFBEAR_REPO_WWW/wolfbear-os_$WOLFBEAR_VERSION'"
+
+ssh -i "$WOLFBEAR_REPO_CERT" wolfbear@wolfbear.mx <<ENDSSH
+    set -eux
+
+    echo "Remote user:"
+    whoami
+
+    echo "Attemping to reach directory $WOLFBEAR_REPO_WWW"
+    cd "$WOLFBEAR_REPO_WWW"
+
+    rm -rf "wolfbear-os_$WOLFBEAR_VERSION"
+ENDSSH
+
+echo "Remote repository directory 'wolfbear-os_$WOLFBEAR_VERSION' has been cleared successfully."

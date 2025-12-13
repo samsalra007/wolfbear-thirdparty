@@ -30,8 +30,8 @@ export BUSYBOX_SOURCES_DIR="$ROOT_PATH/sources/wolfbear-os_$WOLFBEAR_VERSION/bus
 export BUSYBOX_COMPILED_DIR="$ROOT_PATH/output/wolfbear-os_$WOLFBEAR_VERSION/busybox/$SYS_ARCH/$BUSY_BOX_VERSION"
 export BUSYBOX_THIRDPARTY_CONFIGS_DIR="$ROOT_PATH/thirdparty/busybox/configs"
 
-export APK_SOURCES_DIR="$ROOT_PATH/sources/wolfbear-os_$WOLFBEAR_VERSION/apk/"
-export APK_COMPILED_DIR="$ROOT_PATH/output/wolfbear-os_$WOLFBEAR_VERSION/apk/"
+export APK_SOURCES_DIR="$ROOT_PATH/sources/wolfbear-os_$WOLFBEAR_VERSION/apk"
+export APK_COMPILED_DIR="$ROOT_PATH/output/wolfbear-os_$WOLFBEAR_VERSION/apk"
 
 export QT_VERSION=6.9.1
 export QT_SOURCES_DIR="$ROOT_PATH/sources/wolfbear-os_$WOLFBEAR_VERSION/busybox/$SYS_ARCH/$QT_VERSION"

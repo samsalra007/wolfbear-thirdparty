@@ -3,16 +3,9 @@ set -e
 
 source ./globals
 
-rm -rf "$BUSYBOX_SOURCE_CODE_DIR/.config"
-cp "$BUSYBOX_CONFIGS_PATH/busybox-$SYS_ARCH" "$BUSYBOX_SOURCE_CODE_DIR/.config"
+echo "Compiling Busybox source code in '$BUSYBOX_SOURCES_DIR' for arch '$SYS_ARCH'"
 
-cd "$BUSYBOX_SOURCE_CODE_DIR"
+cd "$BUSYBOX_SOURCES_DIR"
 make -j"$(nproc)"
 
-rm -f busybox.zip
-zip -r busybox.zip .
-
-rm -rf "$BUSYBOX_COMPILED_DIR"
-mkdir -p "$BUSYBOX_COMPILED_DIR"
-
-mv busybox.zip "$BUSYBOX_COMPILED_DIR"
+echo "Compilation of Busybox completed successfully"

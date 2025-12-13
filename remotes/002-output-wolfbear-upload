@@ -5,6 +5,6 @@ source ./globals
 echo "Uploading Wolfbear OS output zip archive to remote repository"
 
 cd $OUTPUT_DIR
-scp -i "$WOLFBEAR_REPO_CERT" "$OUTPUT_PATH/$WOLFBEAR_OUTPUT_ZIP_NAME" wolfbear@wolfbear.mx:"$WOLFBEAR_REPO_WWW"
+scp -i "$WOLFBEAR_REPO_CERT" "$OUTPUT_DIR/$WOLFBEAR_OUTPUT_ZIP_NAME" wolfbear@wolfbear.mx:"$WOLFBEAR_REPO_WWW"
 
 echo "Wolfbear OS output zip archive uploaded successfully to remote repository."

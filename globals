@@ -8,28 +8,21 @@ else
 	SYS_ARCH='amd64'
 fi
 
-
 export ROOT_PATH=$( pwd )
 
 export WOLFBEAR_VERSION="1.0"
 export WOLFBEAR_REPO_CERT="$ROOT_PATH/certs/wolfbear-repo.pem"
 export WOLFBEAR_REPO_WWW="/scratch/www/os.wolfbear.mx/public"
 
-export WOLFBEAR_APK_SNAPSHOT_ZIP_FILE="$WOLFBEAR_VERSION.zip"
-
-export VERSION_LINUX_KERNEL=6.17
-
 export LINUX_KERNEL_VERSION=6.17
 export LINUX_KERNEL_SOURCES_DIR="$ROOT_PATH/sources/wolfbear-os_$WOLFBEAR_VERSION/linux/$SYS_ARCH/$LINUX_KERNEL_VERSION"
 export LINUX_KERNEL_COMPILED_DIR="$ROOT_PATH/output/wolfbear-os_$WOLFBEAR_VERSION/linux/$SYS_ARCH/$LINUX_KERNEL_VERSION"
 export LINUX_KERNEL_CONFIG_DIR="$ROOT_PATH/linux/config"
-export LINUX_THIRDPARTY_CONFIGS_DIR="$ROOT_PATH/thirdparty/linux/configs"
 
 export BUSY_BOX_VERSION=1.37.0
 export BUSYBOX_SOURCES_DIR="$ROOT_PATH/sources/wolfbear-os_$WOLFBEAR_VERSION/busybox/$SYS_ARCH/$BUSY_BOX_VERSION"
 export BUSYBOX_COMPILED_DIR="$ROOT_PATH/output/wolfbear-os_$WOLFBEAR_VERSION/busybox/$SYS_ARCH/$BUSY_BOX_VERSION"
 export BUSYBOX_CONFIG_DIR="$ROOT_PATH/busybox/config"
-export BUSYBOX_THIRDPARTY_CONFIGS_DIR="$ROOT_PATH/thirdparty/busybox/configs"
 
 export APK_SOURCES_DIR="$ROOT_PATH/sources/wolfbear-os_$WOLFBEAR_VERSION/apk"
 export APK_COMPILED_DIR="$ROOT_PATH/output/wolfbear-os_$WOLFBEAR_VERSION/apk"
@@ -37,22 +30,3 @@ export APK_COMPILED_DIR="$ROOT_PATH/output/wolfbear-os_$WOLFBEAR_VERSION/apk"
 export QT_VERSION=6.9.1
 export QT_SOURCES_DIR="$ROOT_PATH/sources/wolfbear-os_$WOLFBEAR_VERSION/busybox/$SYS_ARCH/$QT_VERSION"
 export QT_COMPILED_DIR="$ROOT_PATH/output/wolfbear-os_$WOLFBEAR_VERSION/busybox/$SYS_ARCH/$QT_VERSION"
-
-export OUTPUT_PATH="$ROOT_PATH/output"
-export KERNEL_PATH="$ROOT_PATH/kernel"
-export BUSYBOX_PATH="$ROOT_PATH/busybox"
-
-export SOURCE_CODE_DIR="$OUTPUT_PATH/source-code"
-export LINUX_SOURCE_CODE_DIR="$OUTPUT_PATH/source-code/linux"
-export BUSYBOX_SOURCE_CODE_DIR="$OUTPUT_PATH/source-code/busybox-$BUSY_BOX_VERSION"
-
-export COMPILED_DIR="$OUTPUT_PATH/compiled"
-export LINUX_COMPILED_DIR="$OUTPUT_PATH/compiled/linux"
-export LINUX_MODULES_COMPILED_DIR="$OUTPUT_PATH/compiled/linux-modules"
-export BUSYBOX_COMPILED_DIR="$OUTPUT_PATH/compiled/busybox"
-
-export LINUX_PATCHES_DIR="$KERNEL_PATH/patches"
-export LINUX_CONFIGS_PATH="$KERNEL_PATH/config"
-
-export BUSYBOX_PATCHES_DIR="$BUSYBOX_PATH/patches"
-export BUSYBOX_CONFIGS_PATH="$BUSYBOX_PATH/config"

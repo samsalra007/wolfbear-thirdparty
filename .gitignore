@@ -1,4 +1,5 @@
 output/*
+sources/*
 certs/*
 
 id_ed25519

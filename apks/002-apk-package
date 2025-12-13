@@ -1,0 +1,18 @@
+#! /bin/sh
+set -euo pipefail
+
+source ./globals
+
+echo "Copying packaged apk files to compiled directory at $APK_COMPILED_DIR"
+
+rsync -a --delete "$APK_SOURCES_DIR/" "$APK_COMPILED_DIR/"
+
+echo "APK packages copied successfully to $APK_COMPILED_DIR"
+
+cd "$APK_COMPILED_DIR/.."
+
+rm -rf "apk.zip"
+echo "Creating APK snapshot zip file: $APK_COMPILED_DIR"
+zip -r "apk.zip" "$APK_COMPILED_DIR"
+
+echo "APK snapshot zip file created successfully"

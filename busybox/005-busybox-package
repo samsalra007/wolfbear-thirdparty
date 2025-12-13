@@ -11,7 +11,7 @@ cd ..
 zip -r "busybox.zip" "$BUSYBOX_SOURCES_DIR"
 
 echo "Moving busybox.zip to '$BUSYBOX_COMPILED_DIR'"
-mv "busybox.zip" "$BUSYBOX_COMPILED_DIR"
+mv "busybox.zip" "$(basename "$BUSYBOX_COMPILED_DIR")"
 rm -f busybox.zip
 
 echo "Busybox packaged successfully into '$BUSYBOX_COMPILED_DIR/busybox.zip'"

@@ -4,14 +4,15 @@ set -e
 source ./globals
 
 echo "Packaging compiled Busybox from '$BUSYBOX_SOURCES_DIR' into zip archive"
-cd "$BUSYBOX_SOURCES_DIR"
 
 echo "Creating busybox.zip archive"
-cd ..
-zip -r "busybox.zip" "$BUSYBOX_SOURCES_DIR"
+cd "$BUSYBOX_SOURCES_DIR/.."
+
+rm -rf busybox.zip
+zip -r "busybox.zip" "$(basename "$BUSYBOX_COMPILED_DIR")"
 
 echo "Moving busybox.zip to '$BUSYBOX_COMPILED_DIR'"
-mv "busybox.zip" "$(basename "$BUSYBOX_COMPILED_DIR")"
-rm -f busybox.zip
+mv "busybox.zip" "$BUSYBOX_COMPILED_DIR"
 
+rm -f busybox.zip
 echo "Busybox packaged successfully into '$BUSYBOX_COMPILED_DIR/busybox.zip'"

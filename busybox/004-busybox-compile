@@ -7,5 +7,6 @@ echo "Compiling Busybox source code in '$BUSYBOX_SOURCES_DIR' for arch '$SYS_ARC
 
 cd "$BUSYBOX_SOURCES_DIR"
 make -j"$(nproc)"
+make CONFIG_PREFIX="$BUSYBOX_COMPILED_DIR" install
 
-echo "Compilation of Busybox completed successfully"
+echo "Compilation and installation of Busybox completed successfully"

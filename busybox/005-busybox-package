@@ -8,7 +8,11 @@ source ./globals
 
 echo "Compressing Busybox source code in '$BUSYBOX_SOURCES_DIR' into zip file"
 
-cd "$BUSYBOX_SOURCES_DIR"
+cd "$BUSYBOX_SOURCES_DIR/wolfbear-compilation"
 zip -r busybox.zip .
 
 mv "$BUSYBOX_SOURCES_DIR/busybox.zip" "$BUSYBOX_COMPILED_DIR/"
+
+cd "$BUSYBOX_COMPILED_DIR/.."
+
+rm -rf "$BUSYBOX_SOURCES_DIR/wolfbear-compilation"

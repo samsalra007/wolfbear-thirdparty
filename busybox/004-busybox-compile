@@ -7,6 +7,10 @@ echo "Compiling Busybox source code in '$BUSYBOX_SOURCES_DIR' for arch '$SYS_ARC
 
 cd "$BUSYBOX_SOURCES_DIR"
 make -j"$(nproc)"
-make CONFIG_PREFIX="$BUSYBOX_COMPILED_DIR" install
+
+rm -rf "$BUSYBOX_SOURCES_DIR/wolfbear-compilation"
+mkdir -p "$BUSYBOX_SOURCES_DIR/wolfbear-compilation"
+
+make CONFIG_PREFIX="$BUSYBOX_SOURCES_DIR/wolfbear-compilation" install
 
 echo "Compilation and installation of Busybox completed successfully"

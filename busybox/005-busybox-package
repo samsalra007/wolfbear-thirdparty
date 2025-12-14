@@ -6,20 +6,9 @@ set -e
 
 source ./globals
 
-STAGING_DIR="$(mktemp -d)"
+echo "Compressing Busybox source code in '$BUSYBOX_SOURCES_DIR' into zip file"
 
-echo "Packaging compiled BusyBox"
-
-# Queremos que dentro del zip exista: busybox/...
-mkdir -p "$STAGING_DIR/busybox"
-cp -a "$BUSYBOX_SOURCES_DIR/." "$STAGING_DIR/busybox/"
-
-(
-  cd "$STAGING_DIR"
-  zip -r busybox.zip busybox
-)
-
-mv "$STAGING_DIR/busybox.zip" "$BUSYBOX_SOURCES_DIR/busybox.zip"
-rm -rf "$STAGING_DIR"
+cd "$BUSYBOX_SOURCES_DIR"
+zip -r busybox.zip .
 
 mv "$BUSYBOX_SOURCES_DIR/busybox.zip" "$BUSYBOX_COMPILED_DIR/"

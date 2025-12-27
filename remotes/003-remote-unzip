@@ -13,10 +13,10 @@ ssh -i "$WOLFBEAR_REPO_CERT" wolfbear@wolfbear.mx <<ENDSSH
     echo "Attemping to reach directory $WOLFBEAR_REPO_WWW"
     cd "$WOLFBEAR_REPO_WWW"
 
-    unzip "$WOLFBEAR_OUTPUT_ZIP_NAME"
+    unzip -o "$WOLFBEAR_OUTPUT_ZIP_NAME"
 
     echo "Cleaning up zip file"
     rm $WOLFBEAR_OUTPUT_ZIP_NAME
 ENDSSH
 
-echo "Wolfbear OS output directory 'wolfbear-os_$WOLFBEAR_VERSION' has been unpackaged successfully in remote repository."
+echo "Wolfbear OS output directory has been unpackaged successfully in remote repository."

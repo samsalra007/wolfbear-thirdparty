@@ -6,6 +6,9 @@ source ./globals
 echo "Compiling Busybox source code in '$BUSYBOX_SOURCES_DIR' for arch '$SYS_ARCH'"
 
 cd "$BUSYBOX_SOURCES_DIR"
+
+make clean
+
 make -j"$(nproc)"
 
 rm -rf "$BUSYBOX_SOURCES_DIR/wolfbear-compilation"

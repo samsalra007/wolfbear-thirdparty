@@ -1,0 +1,9 @@
+#!/bin/sh
+set -euo pipefail
+
+source ./globals
+
+echo "Cleaning cache directory"
+rm -rf "$CACHE_DIR"
+
+echo "Cache cleaned successfully"

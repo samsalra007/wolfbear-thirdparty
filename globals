@@ -34,5 +34,5 @@ export APK_SOURCES_DIR="$ROOT_PATH/sources/wolfbear-os_$WOLFBEAR_VERSION/apk"
 export APK_COMPILED_DIR="$ROOT_PATH/output/wolfbear-os_$WOLFBEAR_VERSION/apk"
 
 export QT_VERSION=6.9.1
-export QT_SOURCES_DIR="$ROOT_PATH/sources/wolfbear-os_$WOLFBEAR_VERSION/busybox/$SYS_ARCH/$QT_VERSION"
-export QT_COMPILED_DIR="$ROOT_PATH/output/wolfbear-os_$WOLFBEAR_VERSION/busybox/$SYS_ARCH/$QT_VERSION"
+export QT_SOURCES_DIR="$ROOT_PATH/sources/wolfbear-os_$WOLFBEAR_VERSION/qt-everywhere/$SYS_ARCH/$QT_VERSION"
+export QT_COMPILED_DIR="$ROOT_PATH/output/wolfbear-os_$WOLFBEAR_VERSION/qt-everywhere/$SYS_ARCH/$QT_VERSION"

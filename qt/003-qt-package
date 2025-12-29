@@ -1,0 +1,15 @@
+#! /bin/sh
+set -euo pipefail
+
+source ./globals
+
+echo "Packaging QT Everywhere"
+
+cd $QT_COMPILED_DIR
+zip -r ../qt.zip .
+
+cd ..
+rm -rf "$QT_VERSION"
+mkdir "$QT_VERSION"
+
+mv "qt.zip" "$QT_VERSION"

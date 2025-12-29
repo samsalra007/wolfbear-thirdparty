@@ -1,0 +1,46 @@
+#! /bin/sh
+set -euo pipefail
+
+source ./globals
+
+echo "Downloading QT from official repo"
+
+QT_SRC_TAR="qt-everywhere-src-$QT_VERSION.tar.xz"
+QT_SRC_URL="https://download.qt.io/archive/qt/6.9/$QT_VERSION/single/$QT_SRC_TAR"
+
+wget -O "$QT_SOURCES_DIR/$QT_SRC_TAR" \
+  "https://download.qt.io/archive/qt/6.9/$QT_VERSION/single/$QT_SRC_TAR"
+
+echo "Extracting QT Everywhere"
+
+cd "$QT_SOURCES_DIR"
+tar xf "$QT_SRC_TAR"
+
+echo "QT downloaded successfully"
+
+cmake qt-everywhere-src-$QT_VERSION/qtbase -GNinja \
+  -DCMAKE_INSTALL_PREFIX=/usr/lib/qt6 \
+  -DCMAKE_PREFIX_PATH="$QT_COMPILED_DIR/usr/lib/qt6/cmake" \
+  -DCMAKE_FIND_ROOT_PATH="$QT_COMPILED_DIR/usr" \
+  -DFEATURE_developer_build=ON \
+  -DFEATURE_private_tests=ON \
+  -DQT_BUILD_EXAMPLES=OFF \
+  -DQT_BUILD_TESTS=OFF
+
+ninja -j"$(nproc)"
+DESTDIR="$QT_COMPILED_DIR" ninja install
+
+echo "Reubicando plugins"
+# --- Reubicar plugins si es necesario ---
+if [ -d "$QT_COMPILED_DIR/usr/lib/qt6/plugins" ]; then
+  echo "Plugins ya están en la ubicación estilo Alpine (usr/lib/qt6/plugins)"
+else
+  if [ -d "$QT_COMPILED_DIR/usr/plugins" ]; then
+    echo "Corrigiendo ubicación de plugins al estilo Alpine"
+    mkdir -p "$QT_COMPILED_DIR/usr/lib/qt6/plugins"
+    mv "$QT_COMPILED_DIR/usr/plugins/"* "$QT_COMPILED_DIR/usr/lib/qt6/plugins/"
+    rmdir "$QT_COMPILED_DIR/usr/plugins" || true
+  fi
+fi
+
+echo "Compilación finalizada. Qt base con EGLFS_KMS lista en $QT_COMPILED_DIR"

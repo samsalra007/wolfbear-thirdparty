@@ -43,6 +43,11 @@ libxkbcommon
 grub-efi
 e2fsprogs-extra
 rsync
+qt6-qtbase
+qt6-qtdeclarative
+qt6-qtshadertools
+qt6-qtimageformats
+qt6-qt5compat
 "
 
 ALPINE_MAIN_REPO="https://dl-cdn.alpinelinux.org/alpine/v3.22/main"

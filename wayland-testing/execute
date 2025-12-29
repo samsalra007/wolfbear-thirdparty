@@ -1,0 +1,107 @@
+#!/bin/sh
+set -e
+
+APP="./WolfbearDenLauncherApp"
+
+echo "[DBG] Starting Wayland test (cage + Qt)"
+echo "[DBG] PWD=$(pwd)"
+echo
+
+# 0) Sanity: app exists & executable
+if [ ! -e "$APP" ]; then
+  echo "[ERR] App not found: $APP"
+  exit 1
+fi
+
+if [ ! -x "$APP" ]; then
+  echo "[WARN] App is not executable, fixing permissions..."
+  chmod +x "$APP" || true
+fi
+
+echo "[DBG] App info:"
+ls -l "$APP" || true
+file "$APP" || true
+echo
+
+# 1) DRM connectors
+echo "[DBG] DRM connectors:"
+ls -l /sys/class/drm/ || true
+for s in /sys/class/drm/card0-*/status; do
+  [ -e "$s" ] && echo "$s: $(cat "$s")"
+done
+echo
+
+# 2) Runtime dir (Wayland needs this)
+UID="$(id -u)"
+export XDG_RUNTIME_DIR="/run/user/$UID"
+echo "[DBG] XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR"
+mkdir -p "$XDG_RUNTIME_DIR"
+chmod 700 "$XDG_RUNTIME_DIR"
+echo
+
+# 3) Qt plugin visibility (Wayland QPA must exist)
+echo "[DBG] Qt platform plugins installed:"
+if [ -d /usr/lib/qt6/plugins/platforms ]; then
+  ls -l /usr/lib/qt6/plugins/platforms | grep -E 'wayland|eglfs|xcb|minimal' || true
+else
+  echo "[WARN] /usr/lib/qt6/plugins/platforms does not exist"
+fi
+echo
+
+# 4) Optional: smoke test Qt debug without cage (will fail if no socket, but should print plugin debug)
+echo "[DBG] Optional Qt smoke test (no compositor, expected to fail but should print plugin debug)..."
+QT_DEBUG_PLUGINS=1 QT_QPA_PLATFORM=wayland \
+  "$APP" > /tmp/qt-direct.log 2>&1 || true
+echo "[DBG] Wrote /tmp/qt-direct.log (showing first 80 lines):"
+head -80 /tmp/qt-direct.log || true
+echo
+
+# 5) Start seatd (clean previous seatd.sock if any)
+export LIBSEAT_BACKEND=seatd
+echo "[DBG] Starting seatd..."
+rm -f /run/seatd.sock 2>/dev/null || true
+seatd -g video > /tmp/seatd.log 2>&1 &
+SEATD_PID=$!
+sleep 0.2
+echo "[DBG] seatd pid=$SEATD_PID"
+echo
+
+# 6) Reduce wlroots spam (tune as needed)
+export WLR_LOG=1
+export WLR_NO_HARDWARE_CURSORS=1
+
+# 7) Run cage + Qt with a CLEAN environment, and capture Qt logs
+echo "[DBG] Launching cage with clean env; logs:"
+echo "      - cage: /tmp/cage.log"
+echo "      - qt  : /tmp/qt.log"
+echo
+
+# Note: we use env -i to avoid missing/inherited junk and force Qt paths
+# We also redirect Qt stdout+stderr to /tmp/qt.log via a shell wrapper.
+exec cage -d -s -- /bin/sh -c '
+  /usr/bin/env -i \
+    PATH="'"$PATH"'" \
+    HOME="'"${HOME:-/root}"'" \
+    XDG_RUNTIME_DIR="'"$XDG_RUNTIME_DIR"'" \
+    WAYLAND_DISPLAY="'"${WAYLAND_DISPLAY:-wayland-0}"'" \
+    LIBSEAT_BACKEND=seatd \
+    WLR_LOG="'"$WLR_LOG"'" \
+    WLR_NO_HARDWARE_CURSORS="'"$WLR_NO_HARDWARE_CURSORS"'" \
+    QT_QPA_PLATFORM=wayland \
+    QT_DEBUG_PLUGINS=1 \
+    QT_LOGGING_RULES="qt.qpa.*=true;qt.wayland.*=true" \
+    QT_PLUGIN_PATH=/usr/lib/qt6/plugins \
+    QT_QPA_PLATFORM_PLUGIN_PATH=/usr/lib/qt6/plugins/platforms \
+    QML2_IMPORT_PATH=/usr/lib/qt6/qml \
+    "'"$APP"'" > /tmp/qt.log 2>&1
+' > /tmp/cage.log 2>&1
+
+
+echo "=== Qt log ==="
+sed -n '1,200p' /tmp/qt.log
+
+echo "=== Cage log ==="
+sed -n '1,120p' /tmp/cage.log
+
+echo "=== seatd log ==="
+tail -60 /tmp/seatd.log

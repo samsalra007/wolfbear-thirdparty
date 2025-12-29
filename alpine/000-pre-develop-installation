@@ -7,7 +7,7 @@ echo "Agregando dependencias de Linux"
 apk add util-linux zip unzip nano flex bison e2fsprogs e2fsprogs-extra
 
 echo "Agregando dependencias para compilar QT6"
-apk add qt6-qtbase-dev qt6-qtdeclarative-dev qt6-qtshadertools-dev qt6-qtwayland cmake ninja build-base
+apk add qt6-qtbase-dev qt6-qtdeclarative-dev qt6-qtshadertools-dev qt6-qtwayland qt6-qtwayland-dev cmake ninja build-base
 
 apk add git ninja perl python3 gperf \
     mesa-dev libxkbcommon-dev \
@@ -30,7 +30,8 @@ apk add \
     libinput-dev \
     libdrm-dev \
     xkeyboard-config \
-    pixman
+    pixman \
+    cage
 
 # Additional dependencies for amd64 architecture
 if [ "$SYS_ARCH" == "amd64" ]; then

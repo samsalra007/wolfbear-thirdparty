@@ -8,3 +8,5 @@ echo "Creating path if not exists '$CACHE_REMOTE_OUTPUT_DIR'"
 mkdir -p "$CACHE_REMOTE_OUTPUT_DIR"
 
 cp -rf "$OUTPUT_DIR/." "$CACHE_REMOTE_OUTPUT_DIR"
+
+echo "Cache generated successfully"

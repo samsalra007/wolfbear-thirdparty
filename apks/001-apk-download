@@ -49,6 +49,7 @@ qt6-qtshadertools
 qt6-qtimageformats
 qt6-qt5compat
 zstd
+file
 "
 
 ALPINE_MAIN_REPO="https://dl-cdn.alpinelinux.org/alpine/v3.22/main"

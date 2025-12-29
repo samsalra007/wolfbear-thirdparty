@@ -5,6 +5,8 @@ source ./globals
 
 cd "$WOLFBEAR_DEN_LAUNCHER_OUTPUT_DIR"
 
+rm -rf build
+
 zip -r ../WolfbearDenLauncher.zip .
 cd ..
 

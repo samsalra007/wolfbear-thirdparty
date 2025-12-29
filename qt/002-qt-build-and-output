@@ -12,8 +12,8 @@ cmake "$QT_SRC_DIR/qtbase" -GNinja \
   -DCMAKE_INSTALL_PREFIX=/usr/lib/qt6 \
   -DCMAKE_PREFIX_PATH="$QT_COMPILED_DIR/usr/lib/qt6/cmake" \
   -DCMAKE_FIND_ROOT_PATH="$QT_COMPILED_DIR/usr" \
-  -DFEATURE_developer_build=ON \
-  -DFEATURE_private_tests=ON \
+  -DFEATURE_developer_build=OFF \
+  -DFEATURE_private_tests=OFF \
   -DQT_BUILD_EXAMPLES=OFF \
   -DQT_BUILD_TESTS=OFF
 

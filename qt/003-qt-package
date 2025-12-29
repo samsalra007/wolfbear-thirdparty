@@ -6,10 +6,11 @@ source ./globals
 echo "Packaging QT Everywhere"
 
 cd $QT_COMPILED_DIR
-zip -r ../qt.zip .
+tar -cf - . | zstd --ultra -22 -T0 -o ../qt.tar.zst
 
 cd ..
+
 rm -rf "$QT_VERSION"
 mkdir "$QT_VERSION"
 
-mv "qt.zip" "$QT_VERSION"
+mv "qt.tar.zst" "$QT_VERSION"

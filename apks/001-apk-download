@@ -3,7 +3,11 @@ set -euo pipefail
 
 source ./globals
 
-WOLFBEAR_ARCHES="aarch64 x86_64"
+if [ "$SYS_ARCH" == "amd64" ]; then
+    WOLFBEAR_ARCHES="x86_64"
+elif [ "$SYS_ARCH" == "arm64" ]; then
+    WOLFBEAR_ARCHES="aarch64"
+fi
 
 WOLFBEAR_PACKAGES="
 apk-tools

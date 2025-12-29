@@ -13,6 +13,6 @@ cd "$APK_COMPILED_DIR/.."
 
 rm -rf "apk_$SYS_ARCH.zip"
 echo "Creating APK snapshot zip file: $APK_COMPILED_DIR"
-zip -r "apk.zip_$SYS_ARCH" "$(basename "$APK_COMPILED_DIR")"
+zip -r "apk_$SYS_ARCH.zip" "$(basename "$APK_COMPILED_DIR")"
 
 echo "APK snapshot zip file created successfully"

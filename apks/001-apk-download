@@ -52,6 +52,7 @@ zstd
 file
 zip
 unzip
+doas
 "
 
 ALPINE_MAIN_REPO="https://dl-cdn.alpinelinux.org/alpine/v3.22/main"

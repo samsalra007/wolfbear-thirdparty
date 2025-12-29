@@ -1,0 +1,5 @@
+#! /bin/sh
+
+echo "Assigning video permissions"
+adduser wolfbear video
+adduser wolfbear input 2>/dev/null || true

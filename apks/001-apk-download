@@ -40,6 +40,9 @@ libinput-dev
 expat-dev
 libffi-dev
 libxkbcommon
+xkeyboard-config
+seatd
+libseat
 grub-efi
 e2fsprogs-extra
 rsync
@@ -53,6 +56,9 @@ file
 zip
 unzip
 doas
+wayland
+wayland-protocols
+wlroots
 "
 
 ALPINE_MAIN_REPO="https://dl-cdn.alpinelinux.org/alpine/v3.22/main"

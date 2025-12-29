@@ -1,0 +1,13 @@
+#! /bin/sh
+set -euo pipefail
+
+source ./globals
+
+rm -rf "$WOLFBEAR_APPS_SOURCES_DIR"
+rm -rf "$WOLFBEAR_APPS_OUTPUT_DIR"
+
+mkdir -p "$WOLFBEAR_APPS_SOURCES_DIR"
+mkdir -p "$WOLFBEAR_APPS_OUTPUT_DIR"
+
+mkdir -p "$WOLFBEAR_DEN_LAUNCHER_SOURCE_DIR"
+mkdir -p "$WOLFBEAR_DEN_LAUNCHER_OUTPUT_DIR"

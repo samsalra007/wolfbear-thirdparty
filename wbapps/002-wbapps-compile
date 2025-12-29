@@ -1,0 +1,10 @@
+#! /bin/sh
+set -euo pipefail
+
+source ./globals
+
+cd "$WOLFBEAR_DEN_LAUNCHER_SOURCE_DIR"
+
+cmake -S . \
+      -B "$WOLFBEAR_DEN_LAUNCHER_OUTPUT_DIR" \
+      -DCMAKE_BUILD_TYPE=Release

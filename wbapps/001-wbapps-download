@@ -1,0 +1,6 @@
+#! /bin/sh
+set -euo pipefail
+
+source ./globals
+
+git clone -b main --single-branch git@github.com:samsalra007/WolfbearDenLauncher.git $WOLFBEAR_DEN_LAUNCHER_SOURCE_DIR

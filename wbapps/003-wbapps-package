@@ -1,0 +1,11 @@
+#! /bin/sh
+set -euo pipefail
+
+source ./globals
+
+cd "$WOLFBEAR_DEN_LAUNCHER_OUTPUT_DIR"
+
+zip -r ../WolfbearDenLauncher.zip .
+cd ..
+
+rm -rf "$WOLFBEAR_DEN_LAUNCHER_OUTPUT_DIR"

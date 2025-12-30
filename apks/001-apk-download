@@ -47,6 +47,7 @@ grub-efi
 e2fsprogs-extra
 rsync
 qt6-qtbase
+qt6-qtbase-x11
 qt6-qtdeclarative
 qt6-qtshadertools
 qt6-qtimageformats
@@ -61,8 +62,8 @@ wayland-protocols
 wlroots
 "
 
-ALPINE_MAIN_REPO="https://dl-cdn.alpinelinux.org/alpine/v3.22/main"
-ALPINE_COMMUNITY_REPO="https://dl-cdn.alpinelinux.org/alpine/v3.22/community"
+ALPINE_MAIN_REPO="http://mirrors.edge.kernel.org/alpine/v3.23/main"
+ALPINE_COMMUNITY_REPO="http://mirrors.edge.kernel.org/alpine/v3.23/community"
 
 for WOLFBEAR_ARCH in $WOLFBEAR_ARCHES; do
     APK_PACKAGES_DOWNLOAD_DIR="$APK_SOURCES_DIR/$WOLFBEAR_ARCH"

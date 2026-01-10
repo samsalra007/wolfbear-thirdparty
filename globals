@@ -11,12 +11,12 @@ fi
 export ROOT_PATH=$( pwd )
 
 export WOLFBEAR_VERSION="1.0"
-export WOLFBEAR_REPO_CERT="$ROOT_PATH/certs/wolfbear-repo.pem"
+export WOLFBEAR_REPO_CERT="$HOME/.wolfbear-dev/certs/wolfbear-repo.pem"
 export WOLFBEAR_REPO_WWW="/scratch/www/os.wolfbear.mx/public"
 
 export OUTPUT_DIR="$ROOT_PATH/output"
-export CACHE_DIR="$HOME/.wolfcache"
-export CACHE_REMOTE_OUTPUT_DIR="$HOME/.wolfcache/remote-output/"
+export CACHE_DIR="$HOME/.wolfbear-dev"
+export CACHE_REMOTE_OUTPUT_DIR="$HOME/.wolfbear-dev/remote-output/"
 export WOLFBEAR_OUTPUT_DIR="$ROOT_PATH/output/wolfbear-os_$WOLFBEAR_VERSION"
 export WOLFBEAR_OUTPUT_ZIP_NAME="wolfbear-os_$WOLFBEAR_VERSION.zip"
 

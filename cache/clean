@@ -4,6 +4,7 @@ set -euo pipefail
 source ./globals
 
 echo "Cleaning cache directory"
-rm -rf "$CACHE_DIR"
+rm -rf "$CACHE_REMOTE_OUTPUT_DIR"
+mkdir -p "$CACHE_REMOTE_OUTPUT_DIR"
 
 echo "Cache cleaned successfully"

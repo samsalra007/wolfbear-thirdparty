@@ -3,11 +3,14 @@ set -euo pipefail
 
 source ./globals
 
-cd "$WOLFBEAR_DEN_LAUNCHER_OUTPUT_DIR"
+cd "$WOLFBEAR_APPS_OUTPUT_DIR"
+mkdir wolfbear-apps
 
-rm -rf build
+rsync -a --update "$WOLFBEAR_DEN_LAUNCHER_OUTPUT_DIR"/usr/ wolfbear-apps/usr/
+rsync -a --update "$WOLFBEAR_PAW_CLI_OUTPUT_DIR"/usr/ wolfbear-apps/usr/
 
-zip -r ../WolfbearDenLauncher.zip .
-cd ..
+tar -czf wolfbear-apps.tar.gz wolfbear-apps
 
+rm -rf wolfbear-apps
 rm -rf "$WOLFBEAR_DEN_LAUNCHER_OUTPUT_DIR"
+rm -rf "$WOLFBEAR_PAW_CLI_OUTPUT_DIR"

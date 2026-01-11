@@ -4,3 +4,4 @@ set -euo pipefail
 source ./globals
 
 git clone -b main --single-branch git@github.com:samsalra007/WolfbearDenLauncher.git $WOLFBEAR_DEN_LAUNCHER_SOURCE_DIR
+git clone -b main --single-branch git@github.com:samsalra007/wolfbear-paw-cli.git $WOLFBEAR_PAW_CLI_SOURCE_DIR

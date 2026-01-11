@@ -3,17 +3,79 @@ set -euo pipefail
 
 source ./globals
 
-cd "$WOLFBEAR_DEN_LAUNCHER_SOURCE_DIR"
+WOLFBEAR_APPS_DEPENDENCIES_SOURCE_DIR="
+$WOLFBEAR_DEN_LAUNCHER_SOURCE_DIR
+$WOLFBEAR_PAW_CLI_SOURCE_DIR
+"
 
-BUILD_DIR="$WOLFBEAR_DEN_LAUNCHER_OUTPUT_DIR/build"
+WOLFBEAR_APPS_DEPENDENCIES_OUTPUT_DIR="
+$WOLFBEAR_DEN_LAUNCHER_OUTPUT_DIR
+$WOLFBEAR_PAW_CLI_OUTPUT_DIR
+"
 
-rm -rf "$BUILD_DIR"
+build_one() {
+  SRC_DIR="$1"
+  OUT_DIR="$2"
 
-cmake -S . \
-      -B "$BUILD_DIR" \
-      -DCMAKE_BUILD_TYPE=Release \
-      -DCMAKE_INSTALL_PREFIX=/usr
+  [ -n "$SRC_DIR" ] || { echo "[ERR] SRC_DIR vacío"; exit 1; }
+  [ -n "$OUT_DIR" ] || { echo "[ERR] OUT_DIR vacío"; exit 1; }
+  [ -d "$SRC_DIR" ] || { echo "[ERR] No existe SRC_DIR: $SRC_DIR"; exit 1; }
 
-cmake --build "$BUILD_DIR" -- -j"$(nproc)"
+  BUILD_DIR="$OUT_DIR/build"
 
-DESTDIR="$WOLFBEAR_DEN_LAUNCHER_OUTPUT_DIR" cmake --install "$BUILD_DIR"
+  echo "[INF] ========================================"
+  echo "[INF] Building: $SRC_DIR"
+  echo "[INF] Output:   $OUT_DIR"
+  echo "[INF] Build:    $BUILD_DIR"
+  echo "[INF] ========================================"
+
+  rm -rf "$BUILD_DIR"
+  mkdir -p "$BUILD_DIR"
+  mkdir -p "$OUT_DIR"
+
+  cmake -S "$SRC_DIR" \
+        -B "$BUILD_DIR" \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX=/usr
+
+  cmake --build "$BUILD_DIR" -- -j"$(nproc)"
+
+  DESTDIR="$OUT_DIR" cmake --install "$BUILD_DIR"
+}
+
+# Itera listas en paralelo (líneas no vacías)
+set -f
+
+i=0
+# Guardamos los outputs en "positional args" para poder indexar con shift
+# (simple y compatible con /bin/sh)
+set -- $(printf '%s\n' "$WOLFBEAR_APPS_DEPENDENCIES_OUTPUT_DIR" | sed '/^[[:space:]]*$/d')
+
+printf '%s\n' "$WOLFBEAR_APPS_DEPENDENCIES_SOURCE_DIR" | sed '/^[[:space:]]*$/d' | while IFS= read -r SRC; do
+  i=$((i + 1))
+
+  # obtener el output i-ésimo: hacemos shift (i-1) en una copia
+  # (busybox ash no tiene arrays reales)
+  OUT_INDEX=$i
+  OUT=""
+  # reconstruimos la lista de outputs cada iteración (costo mínimo, súper robusto)
+  set -- $(printf '%s\n' "$WOLFBEAR_APPS_DEPENDENCIES_OUTPUT_DIR" | sed '/^[[:space:]]*$/d')
+  n=1
+  for o in "$@"; do
+    if [ "$n" -eq "$OUT_INDEX" ]; then
+      OUT="$o"
+      break
+    fi
+    n=$((n + 1))
+  done
+
+  if [ -z "$OUT" ]; then
+    echo "[ERR] No hay OUTPUT_DIR para el SOURCE_DIR #$i: $SRC"
+    echo "[ERR] Revisa que ambas listas tengan el mismo número de líneas."
+    exit 1
+  fi
+
+  build_one "$SRC" "$OUT"
+done
+
+echo "[OK] All apps built & installed into their DESTDIR outputs."

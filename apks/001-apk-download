@@ -28,17 +28,11 @@ openssh-server
 git
 strace
 sdl2
-sdl2-dev
 libdrm
-libdrm-dev
 mesa-gbm
-mesa-dev
 mesa-dri-gallium
 mesa-egl
 libinput
-libinput-dev
-expat-dev
-libffi-dev
 libxkbcommon
 xkeyboard-config
 seatd
